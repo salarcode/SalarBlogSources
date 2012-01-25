@@ -14,8 +14,8 @@ namespace PersianLeftToRightCorrection
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new frmMassive());
-			Application.Run(new frmTest());
+			Application.Run(new frmMassive());
+			//Application.Run(new frmTest());
 		}
 	}
 }
