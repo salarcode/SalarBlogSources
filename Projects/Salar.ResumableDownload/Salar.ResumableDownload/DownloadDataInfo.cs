@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Text;
 
 namespace Salar.ResumableDownload
 {
@@ -79,6 +76,7 @@ namespace Salar.ResumableDownload
 
 		public void Dispose()
 		{
+			Disposed = true;
 			if (_streamCreated && DataStream != null)
 			{
 				DataStream.Close();
@@ -90,12 +88,15 @@ namespace Salar.ResumableDownload
 			OnDisposed();
 		}
 
-		internal event Action<DownloadDataInfo> Disposed;
+		/// <summary>
+		/// When this part finished
+		/// </summary>
+		internal event Action<DownloadDataInfo> Finished;
 
 		private void OnDisposed()
 		{
-			if (Disposed != null) 
-				Disposed(this);
+			if (Finished != null) 
+				Finished(this);
 		}
 
 		/// <summary>
@@ -164,6 +165,8 @@ namespace Salar.ResumableDownload
 					_displayFileName = value.Replace(' ', '_');
 			}
 		}
+
+		internal bool Disposed { get; private set; }
 
 		internal string UserId { get; set; }
 

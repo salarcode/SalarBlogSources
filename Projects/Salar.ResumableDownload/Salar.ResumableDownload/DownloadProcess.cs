@@ -26,7 +26,7 @@ namespace Salar.ResumableDownload
 			/// <summary>
 			/// Download was completed
 			/// </summary>
-			Finished
+			PartFinished
 		}
 
 		#region Header consts
@@ -410,9 +410,15 @@ namespace Salar.ResumableDownload
 						}
 
 						// The download was finished
-						processState = DownloadProcessState.Finished;
+						processState = DownloadProcessState.PartFinished;
 					}
 				}
+			}
+
+			// if this part finished notify the data info
+			if (processState == DownloadProcessState.PartFinished)
+			{
+				
 			}
 
 			//====== return download state ======
