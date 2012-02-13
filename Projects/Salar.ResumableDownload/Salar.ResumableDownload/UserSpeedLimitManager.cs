@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Salar.ResumableDownload
 {
@@ -28,7 +29,7 @@ namespace Salar.ResumableDownload
 				throw new ArgumentNullException();
 
 			dataInfo.UserId = userIP;
-			dataInfo.Disposed += dataInfo_Disposed;
+			dataInfo.Finished += DataInfoFinished;
 			lock (_userDownloadInfo)
 			{
 				_userDownloadInfo.Add(new DownloadInfo { UserIP = userIP, DataInfo = dataInfo, SpeedLimit = userSpeedLimit });
@@ -38,7 +39,7 @@ namespace Salar.ResumableDownload
 			ApplySpeedLimit(userIP, userSpeedLimit);
 		}
 
-		static void dataInfo_Disposed(DownloadDataInfo dataInfo)
+		static void DataInfoFinished(DownloadDataInfo dataInfo)
 		{
 			if (dataInfo != null)
 			{
@@ -60,10 +61,14 @@ namespace Salar.ResumableDownload
 				if (liveDownsCount == 0)
 					return;
 
-				var speadedBytes = bytesPerSecond / liveDownsCount;
+				var speadedBytes = (bytesPerSecond + 1) / liveDownsCount;
+
+				// millisecods, this should help spreading speed equally through time
+				var spreadedSleep = 1000 / (liveDownsCount * 2);
 
 				foreach (var x in _userDownloadInfo.Where(x => x.UserIP == userIP))
 				{
+					Thread.Sleep(spreadedSleep);
 					x.SpeedLimit = bytesPerSecond;
 					x.DataInfo.LimitTransferSpeed(speadedBytes);
 				}

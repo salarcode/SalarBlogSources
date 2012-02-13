@@ -14,7 +14,7 @@ namespace Salar.ResumableDownload.WebTest
 		/// <summary>
 		/// 10 KB limit
 		/// </summary>
-		const int DownloadLimit = 20 * 1024;
+		const int DownloadLimit = 500 * 1024;
 
 		public void ProcessRequest(HttpContext context)
 		{
@@ -83,7 +83,7 @@ namespace Salar.ResumableDownload.WebTest
 				var state = process.ProcessDownload(context.Response);
 
 				// checking the state of the download
-				if (state == DownloadProcess.DownloadProcessState.Finished)
+				if (state == DownloadProcess.DownloadProcessState.PartFinished)
 				{
 					// all parts of download are finish, do something here!
 				}
