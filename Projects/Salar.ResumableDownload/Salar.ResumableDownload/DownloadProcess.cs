@@ -7,6 +7,21 @@ using System.Web;
 
 namespace Salar.ResumableDownload
 {
+	/// <summary>
+	/// Resumable download processor by Salar Khalilzadeh
+	/// http://www.salarcode.com
+	/// http://blog.salarcode.com
+	/// https://salarblogsources.svn.codeplex.com/svn/Projects/Salar.ResumableDownload/
+	/// 
+	/// Original class name is "ZIPHandler" in VB.Net by Alexander Schaaf
+	/// http://www.devx.com
+	/// 
+	/// Last update: 2012-2-25
+	/// </summary>
+	/// <authors>
+	/// ResumableDownload: Salar Khalilzadeh,
+	/// ZIPHandler: Alexander Schaaf
+	/// </authors>
 	public class DownloadProcess : IDisposable
 	{
 		public enum DownloadProcessState
@@ -24,7 +39,7 @@ namespace Salar.ResumableDownload
 			Broken,
 
 			/// <summary>
-			/// Download was completed
+			/// Part of download was completed
 			/// </summary>
 			PartFinished
 		}

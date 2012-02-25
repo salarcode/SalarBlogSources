@@ -4,6 +4,18 @@ using System.Web;
 
 namespace Salar.ResumableDownload
 {
+	/// <summary>
+	/// Parsing request or response headers for download informations
+	/// </summary>
+	/// <authors>
+	/// Salar Khalilzadeh
+	/// http://www.salarcode.com
+	/// http://blog.salarcode.com
+	/// https://salarblogsources.svn.codeplex.com/svn/Projects/Salar.ResumableDownload/
+	/// 
+	/// ZIPHandler: Alexander Schaaf
+	/// http://www.devx.com
+	/// </authors>
 	public class HeadersParser
 	{
 		const string HTTP_METHOD_GET = "GET";

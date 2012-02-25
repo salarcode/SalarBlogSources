@@ -6,6 +6,12 @@ namespace Salar.ResumableDownload
 	/// <summary>
 	/// Rseumable download information
 	/// </summary>
+	/// <authors>
+	/// Salar Khalilzadeh
+	/// http://www.salarcode.com
+	/// http://blog.salarcode.com
+	/// https://salarblogsources.svn.codeplex.com/svn/Projects/Salar.ResumableDownload/
+	/// </authors>
 	public class DownloadDataInfo : IDisposable
 	{
 		public const string MimeStreamData = "application/octet-stream";

@@ -9,6 +9,12 @@ namespace Salar.ResumableDownload
 	/// <summary>
 	/// Managing user downloads speed limit
 	/// </summary>
+	/// <authors>
+	/// Salar Khalilzadeh
+	/// http://www.salarcode.com
+	/// http://blog.salarcode.com
+	/// https://salarblogsources.svn.codeplex.com/svn/Projects/Salar.ResumableDownload/
+	/// </authors>
 	public static class UserSpeedLimitManager
 	{
 		private class DownloadInfo
