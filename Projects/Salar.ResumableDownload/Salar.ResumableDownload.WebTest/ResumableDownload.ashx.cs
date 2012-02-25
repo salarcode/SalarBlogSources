@@ -12,7 +12,7 @@ namespace Salar.ResumableDownload.WebTest
 	public class ResumableDownload : IHttpHandler
 	{
 		/// <summary>
-		/// 10 KB limit
+		/// 500 KB limit
 		/// </summary>
 		const int DownloadLimit = 500 * 1024;
 
