@@ -50,8 +50,8 @@ namespace Salar.ResumableDownload
 			if (dataInfo != null)
 			{
 				var userIP = dataInfo.UserId;
-				var etag = dataInfo.EntityTag;
-				RemoveDownloadInfoByEtag(etag);
+				var guid = dataInfo.DataId;
+				RemoveDownloadInfoByDataId(guid);
 				RefreshUserLimitState(userIP);
 			}
 		}
@@ -107,16 +107,14 @@ namespace Salar.ResumableDownload
 			}
 		}
 
-		private static void RemoveDownloadInfoByEtag(string etag)
+		private static void RemoveDownloadInfoByDataId(Guid dataId)
 		{
-			if (etag == null)
-				return;
-			lock (_userDownloadInfo)
+ 			lock (_userDownloadInfo)
 			{
 				for (int i = _userDownloadInfo.Count - 1; i >= 0; i--)
 				{
 					var t = _userDownloadInfo[i];
-					if (t.DataInfo.EntityTag == etag)
+					if (t.DataInfo.DataId == dataId)
 					{
 						_userDownloadInfo.RemoveAt(i);
 					}

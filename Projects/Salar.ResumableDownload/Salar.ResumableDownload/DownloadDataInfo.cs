@@ -18,6 +18,7 @@ namespace Salar.ResumableDownload
 		private bool _streamCreated = false;
 		public DownloadDataInfo(string fileName)
 		{
+			DataId = Guid.NewGuid();
 			var info = new FileInfo(fileName);
 			PhysicalFileAvailable = true;
 			PhysicalFileName = fileName;
@@ -39,6 +40,7 @@ namespace Salar.ResumableDownload
 
 		public DownloadDataInfo(Stream dataStream, string displayFileName)
 		{
+			DataId = Guid.NewGuid();
 			if (dataStream.CanSeek)
 				ContentLength = dataStream.Length;
 			else
@@ -62,6 +64,7 @@ namespace Salar.ResumableDownload
 
 		public DownloadDataInfo(byte[] dataBytes, string displayFileName)
 		{
+			DataId = Guid.NewGuid();
 			PhysicalFileAvailable = false;
 			PhysicalFileName = string.Empty;
 			ContentLength = dataBytes.Length;
@@ -173,6 +176,7 @@ namespace Salar.ResumableDownload
 		}
 
 		internal bool Disposed { get; private set; }
+		internal Guid DataId { get; private set; }
 
 		internal string UserId { get; set; }
 

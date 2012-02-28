@@ -199,9 +199,9 @@ namespace System.IO
 		/// <exception cref="T:System.ArgumentOutOfRangeException">offset or count is negative. </exception>
 		public override int Read(byte[] buffer, int offset, int count)
 		{
-			Throttle(count);
-
-			return _baseStream.Read(buffer, offset, count);
+			var read = _baseStream.Read(buffer, offset, count);
+			Throttle(read);
+			return read;
 		}
 
 		/// <summary>
