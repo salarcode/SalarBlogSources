@@ -41,7 +41,12 @@ namespace Salar.ResumableDownload
 			/// <summary>
 			/// Part of download was completed
 			/// </summary>
-			PartFinished
+			PartFinished,
+
+			/// <summary>
+			/// Last part of download is finished, which most probably can say all of the download is finished
+			/// </summary>
+			LastPartfinished
 		}
 
 		#region Header consts
@@ -433,9 +438,11 @@ namespace Salar.ResumableDownload
 			// if this part finished notify the data info
 			if (processState == DownloadProcessState.PartFinished)
 			{
-				
+				if (rangesBegin.Length > 0 && rangesBegin.GetUpperBound(0) == _dataInfo.ContentLength)
+				{
+					processState = DownloadProcessState.LastPartfinished;
+				}
 			}
-
 			//====== return download state ======
 			return processState;
 		}
