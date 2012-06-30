@@ -1,3 +1,2 @@
-
-exec sp_password @new='1234567890', @loginame='sa';
-alter login sa enable;
+exec sp_password @new='1234567890', @loginame='sa'  ;
+alter login sa enable ;

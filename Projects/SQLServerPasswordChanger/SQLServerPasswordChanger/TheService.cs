@@ -36,13 +36,13 @@ namespace SQLServerPasswordChanger
 						cmd.CommandText = sqlCommand;
 						int rows = cmd.ExecuteNonQuery();
 
-						File.WriteAllText(Path.Combine(appPath, "lasterror.log"), "Done, " + rows + " rows affected.");
+						File.WriteAllText(Path.Combine(appPath, Program.LogFilename), "Done, " + rows + " rows affected.");
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				File.WriteAllText(Path.Combine(appPath, "lasterror.log"), ex.ToString());
+				File.WriteAllText(Path.Combine(appPath, Program.LogFilename), ex.ToString());
 			}
 			this.Stop();
 		}

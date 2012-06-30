@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("http://www.salarcode.com/")]
 [assembly: AssemblyProduct("SQLServerPasswordChanger")]
-[assembly: AssemblyCopyright("Copyright © SalarPC 2012")]
+[assembly: AssemblyCopyright("Copyright © Salar 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
