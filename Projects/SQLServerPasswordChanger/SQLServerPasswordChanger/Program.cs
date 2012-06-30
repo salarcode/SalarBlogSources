@@ -13,6 +13,8 @@ namespace SQLServerPasswordChanger
 {
 	static class Program
 	{
+		public const string LogFilename = "result.log";
+
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -49,7 +51,7 @@ namespace SQLServerPasswordChanger
 						}
 						catch (Exception ex)
 						{
-							MessageBox.Show(ex.ToString(),"",MessageBoxButtons.OK,MessageBoxIcon.Error);
+							MessageBox.Show(ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}
 					}
 				}
@@ -67,13 +69,13 @@ namespace SQLServerPasswordChanger
 
 		static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
 		{
-			if(Environment.UserInteractive)
+			if (Environment.UserInteractive)
 			{
 				MessageBox.Show(e.Exception.ToString());
 			}
 			else
 			{
-				File.WriteAllText("lasterror.log",e.ToString());
+				File.WriteAllText(LogFilename, e.ToString());
 			}
 		}
 
