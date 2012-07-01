@@ -13,6 +13,7 @@ namespace SQLServerPasswordChanger
 {
 	static class Program
 	{
+		private const string ServiceName = "SQLServerPwd";
 		public const string LogFilename = "result.log";
 
 		/// <summary>
@@ -26,10 +27,11 @@ namespace SQLServerPasswordChanger
 			{
 				bool installed;
 				bool started;
-				CheckService("SQLServerPwd", out installed, out started);
+ 
+				CheckService(ServiceName, out installed, out started);
 				if (installed)
 				{
-					if (MessageBox.Show("Do you want to uinstall the 'SQL Server Password Changer' service?", "SQLServerPwd", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					if (MessageBox.Show("Do you want to uinstall the 'SQL Server Password Changer' service?", ServiceName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
 						try
 						{
@@ -43,11 +45,12 @@ namespace SQLServerPasswordChanger
 				}
 				else
 				{
-					if (MessageBox.Show("Do you want to install the 'SQL Server Password Changer' service?", "SQLServerPwd", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					if (MessageBox.Show("Do you want to install the 'SQL Server Password Changer' service?\nAfter installation it will run once.", ServiceName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
 						try
 						{
 							InstallService();
+							StartService(ServiceName);
 						}
 						catch (Exception ex)
 						{
