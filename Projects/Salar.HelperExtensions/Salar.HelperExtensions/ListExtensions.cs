@@ -9,6 +9,30 @@ namespace System
 	public static class ListExtensions
 	{
 		/// <summary>
+		/// Gets the value associated with the specified key, returns default value if key is not present!
+		/// </summary>
+		public static TVal Get<TKey, TVal>(this IDictionary<TKey, TVal> dictionary, TKey key)
+		{
+			TVal result;
+			dictionary.TryGetValue(key, out result);
+			return result;
+		}
+
+		public static string Join(this StringCollection coll, string seperator)
+		{
+			var result = new StringBuilder();
+			for (int i = 0; i < coll.Count; i++)
+			{
+				result.Append(coll[i]);
+				if (i + 1 < coll.Count)
+				{
+					result.Append(seperator);
+				}
+			}
+			return result.ToString();
+		}
+
+		/// <summary>
 		/// Performs the specified action on each element of the IEnumerable.
 		/// </summary>
 		public static void ForEachAction<T>(this IEnumerable<T> enumerable, Action<T> action)
